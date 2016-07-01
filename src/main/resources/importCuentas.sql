@@ -1,0 +1,12 @@
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (3000,'renta', 0, 1);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (25,'estacionamiento',1,22);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (50,'gasolina',1,22);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (150,'alimentos',1,22);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (150,'spotify',0,1);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (100,'gas',0,1);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (50,'luz',0,1);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (400,'internet',0,1);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (1000,'weekend',0,4);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (2164,'santander',0,1);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (1500,'mama',0,1);
+insert into cuentas.gasto(cantidad, concepto, diario, frecuencia) values (1500,'ayuda',0,1);
