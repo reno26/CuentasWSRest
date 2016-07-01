@@ -16,26 +16,24 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriTemplate;
 
 import com.reno.blue.cuentas.model.Cuenta;
-import com.reno.blue.cuentas.service.CuentaRepository;
+import com.reno.blue.cuentas.service.CuentaService;
 
 @RestController
 @RequestMapping(value = "/cuenta")
 public class CuentaController {
 	
 	@Autowired
-	private CuentaRepository cuentaRepository;
+	private CuentaService cuentaService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public Iterable<Cuenta> all() {
-		return cuentaRepository.findAll();
+		return cuentaService.findAll();
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void create(@RequestBody Cuenta cuenta, HttpServletRequest request, HttpServletResponse response) {
-		cuentaRepository.save(cuenta);
-		Long newId = cuenta.getId();
-
+		Long newId = cuentaService.create(cuenta);
 		String requestUrl = request.getRequestURL().toString();
 		URI uri = new UriTemplate("{requestUrl}/{id}").expand(requestUrl, newId);
 		response.setHeader("Location", uri.toASCIIString());
@@ -44,20 +42,13 @@ public class CuentaController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.OK)
 	public void update(@PathVariable Long id, @RequestBody Cuenta cuenta) {
-		Cuenta cuentaDb = cuentaRepository.findOne(id);
-		if (cuentaDb == null) {
-			throw new IllegalStateException("No cuenta with: " + id);
-		}
-		cuenta.setId(cuentaDb.getId());
-		cuentaRepository.save(cuenta);
-
+		cuentaService.update(id, cuenta);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable Long id) {
-		cuentaRepository.delete(id);
+		cuentaService.delete(id);
 	}
-
 
 }

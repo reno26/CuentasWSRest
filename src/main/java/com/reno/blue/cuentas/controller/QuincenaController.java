@@ -16,26 +16,24 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriTemplate;
 
 import com.reno.blue.cuentas.model.Quincena;
-import com.reno.blue.cuentas.service.QuincenaRepository;
+import com.reno.blue.cuentas.service.QuincenaService;
 
 	@RestController
 	@RequestMapping("/quincena")
 	public class QuincenaController {
 
 		@Autowired
-		private QuincenaRepository quincenaRepository;
-
+		private QuincenaService quincenaService;
+		
 		@RequestMapping(value = "/list", method = RequestMethod.GET)
 		public Iterable<Quincena> all() {
-			return quincenaRepository.findAll();
+			return quincenaService.findAll();
 		}
 
 		@RequestMapping(value = "/save", method = RequestMethod.POST)
 		@ResponseStatus(HttpStatus.CREATED)
 		public void create(@RequestBody Quincena quincena, HttpServletRequest request, HttpServletResponse response) {
-			quincenaRepository.save(quincena);
-			Long newId = quincena.getId();
-
+			Long newId = quincenaService.create(quincena);
 			String requestUrl = request.getRequestURL().toString();
 			URI uri = new UriTemplate("{requestUrl}/{id}").expand(requestUrl, newId);
 			response.setHeader("Location", uri.toASCIIString());
@@ -44,19 +42,14 @@ import com.reno.blue.cuentas.service.QuincenaRepository;
 		@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 		@ResponseStatus(HttpStatus.OK)
 		public void update(@PathVariable Long id, @RequestBody Quincena quincena) {
-			Quincena quincenaDb = quincenaRepository.findOne(id);
-			if (quincenaDb == null) {
-				throw new IllegalStateException("No quincena with: " + id);
-			}
-			quincena.setId(quincenaDb.getId());
-			quincenaRepository.save(quincena);
-
+			quincenaService.update(id, quincena);
 		}
 
 		@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 		@ResponseStatus(HttpStatus.OK)
 		public void delete(@PathVariable Long id) {
-			quincenaRepository.delete(id);
+			quincenaService.delete(id);
 		}
+
 
 }
