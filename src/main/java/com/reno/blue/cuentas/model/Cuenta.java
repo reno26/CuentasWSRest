@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.reno.blue.cuentas.enums.TipoCuenta;
+
 @Entity
 @Table(name = "cuenta")
 public class Cuenta {
@@ -19,7 +21,7 @@ public class Cuenta {
 	private Long id;
 
 	@Column(nullable = false)
-	private String tipoCuenta;
+	private TipoCuenta tipoCuenta;
 
 	@Column(nullable = false)
 	private String concepto;
@@ -54,11 +56,11 @@ public class Cuenta {
 		this.id = id;
 	}
 
-	public String getTipoCuenta() {
+	public TipoCuenta getTipoCuenta() {
 		return tipoCuenta;
 	}
 
-	public void setTipoCuenta(String tipoCuenta) {
+	public void setTipoCuenta(TipoCuenta tipoCuenta) {
 		this.tipoCuenta = tipoCuenta;
 	}
 

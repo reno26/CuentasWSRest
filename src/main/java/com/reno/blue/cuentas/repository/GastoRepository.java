@@ -1,4 +1,4 @@
-package com.reno.blue.cuentas.service;
+package com.reno.blue.cuentas.repository;
 
 import org.springframework.data.repository.CrudRepository;
 

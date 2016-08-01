@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.reno.blue.cuentas.model.Gasto;
-import com.reno.blue.cuentas.service.GastoRepository;
+import com.reno.blue.cuentas.repository.GastoRepository;
 import com.reno.blue.cuentas.service.GastoService;
 
 @Service

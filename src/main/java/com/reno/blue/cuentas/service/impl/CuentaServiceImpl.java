@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.reno.blue.cuentas.model.Cuenta;
-import com.reno.blue.cuentas.service.CuentaRepository;
+import com.reno.blue.cuentas.repository.CuentaRepository;
 import com.reno.blue.cuentas.service.CuentaService;
 
 @Service
